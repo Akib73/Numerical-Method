@@ -1,0 +1,83 @@
+#include<iostream>
+#include<iomanip>
+#include<math.h>
+#include <stdlib.h>
+#define Size 10
+using  namespace std ;
+int main ()
+{
+    float a[Size][Size],x[Size],  ratioo;
+    int i,j,k,n;
+    cout<< setprecision (3)<<fixed;
+    cout<<"Enter the vale of Unknown :";
+    cin>>n;
+    cout<<"Enter the Coefficiants matrix:";
+    for (int i=1; i<=n; i++)
+    {
+
+        for (int j=1; j<=n+1; j++)
+        {
+            cout<<"a["<<i<<"]"<<"["<<j<<"]:";
+            cin>>a[i][j];
+
+        }
+    }
+    cout<<"The cofficiants mariix is : ";
+    for (int i=1; i<=n; i++)
+    {
+
+        for (int j=1; j<=n+1; j++)
+        {
+            cout <<a[i][j]<<" ";
+
+        }
+        cout <<"\n";
+    }
+    for (i=1; i<=n-1; i++)
+    {
+        for (j=i+1; j<=n;  j++)
+
+        {
+            ratioo=a[j][i]/a[i][i];
+            for (k=1; k<=n+1; k++)
+            {
+
+                a[j][k]=a[j][k]-ratioo*a[i][k];
+            }
+        }
+
+    }
+    cout <<"The upper matrix\n\n";
+
+    for (int i=1; i<=n; i++)
+    {
+
+        for (int j=1; j<=n+1; j++)
+        {
+            cout <<a[i][j]<<" ";
+
+        }
+        cout <<"\n";
+    }
+    x[n]=a[n][n+1]/a[n][n];
+    for (i=n-1; i>=1; i--)
+    {
+        x[i]=a[i][n+1];
+
+        for (j=i+1; j<=n; j++)
+        {
+
+            x[i]=x[i]-a[i][j]*x[j];
+
+        }
+        x[i]=x[i]/a[i][i];
+
+    }
+    cout<< endl<<"Solution: "<< endl;
+    for(i=1; i<=n; i++)
+    {
+        cout<<"x["<< i<<"] = "<< x[i]<< endl;
+    }
+
+
+}
